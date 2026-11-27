@@ -2,6 +2,11 @@
 
 GA4 code ships **dormant**. **GA4 activation requires operator/client consent-policy decision.**
 
+> **Update (GTM + consent card):** the site now has an opt-in cookie card; gtag.js loads only after Accept.
+> If `PUBLIC_GTM_CONTAINER_ID` is set, this direct GA4 path does not load at all; follow
+> `docs/GTM-ACTIVATION-CHECKLIST.md` instead. The consent gate below is met by the card; the rest still applies
+> when using this path.
+
 It is activated by setting `PUBLIC_GA_MEASUREMENT_ID` (`G-XXXXXXX`) in the environment of the
 **production** build and redeploying. With the variable unset, empty or invalid, the build output is
 byte-identical to a build without analytics: no gtag.js request, no `dataLayer`, nothing sent.

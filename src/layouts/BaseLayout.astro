@@ -32,9 +32,9 @@ const canonicalURL = new URL(pathNoBase, site.url);
 const robots = noindex || isPreviewBuild ? "noindex, nofollow" : null;
 const fullTitle = `${title} | ${site.name}`;
 
-// Analytics: GA4 ships dormant. Nothing loads until PUBLIC_GA_MEASUREMENT_ID is set at build time,
-// which must wait for Karen's approval of the measurement ID and a consent setup
-// (docs/GA4-ACTIVATION-CHECKLIST.md).
+// Analytics ships dormant: nothing renders until PUBLIC_GTM_CONTAINER_ID (or PUBLIC_GA_MEASUREMENT_ID) is set
+// at build time, and even then no Google script loads until the visitor accepts the cookie card
+// (docs/GTM-ACTIVATION-CHECKLIST.md).
 ---
 
 <!doctype html>
@@ -84,10 +84,10 @@ const fullTitle = `${title} | ${site.name}`;
       description: site.description,
     })} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-    <Analytics title={fullTitle} />
 
   </head>
   <body>
+    <Analytics title={fullTitle} />
     <Nav />
     <main>
       <slot />
